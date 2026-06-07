@@ -78,11 +78,99 @@ const dockApps = [
     icon: "terminal.png",
     canOpen: true,
   },
+
+  {
+    id: "launchpad",
+    name: "launchpad",
+    icon: "launchpad.png",
+    canOpen: false,
+  },
+  {
+    id: "messages",
+    name: "messages",
+    icon: "messages.png",
+    canOpen: false,
+  },
+  {
+    id: "mail",
+    name: "mail",
+    icon: "mail.png",
+    canOpen: false,
+  },
+  {
+    id: "maps",
+    name: "maps",
+    icon: "maps.png",
+    canOpen: false,
+  },
+  
+  {
+    id: "facetime",
+    name: "facetime",
+    icon: "facetime.png",
+    canOpen: false,
+  },
+  {
+    id: "calendar",
+    name: "calendar",
+    icon: "calendar.png",
+    canOpen: false,
+  },
+
+  {
+    id: "reminders",
+    name: "reminders",
+    icon: "reminders.png",
+    canOpen: false,
+  },
+
+  {
+    id: "appletv",
+    name: "tv",
+    icon: "apple-tv.png",
+    canOpen: false,
+  },
+  {
+    id: "music",
+    name: "music",
+    icon: "music.png",
+    canOpen: false,
+  },
+  {
+    id: "podcasts",
+    name: "podcasts",
+    icon: "podcasts.png",
+    canOpen: false,
+  },
+  {
+    id: "appstore",
+    name: "appstore",
+    icon: "appstore.png",
+    canOpen: false,
+  },
+  {
+    id: "settings",
+    name: "settings",
+    icon: "applesettings.png",
+    canOpen: false,
+  },
+  {
+    id: "spotify",
+    name: "spotify",
+    icon: "spotify.png",
+    canOpen: false,
+  },
+  {
+    id: "youtube",
+    name: "youtube",
+    icon: "youtube.png",
+    canOpen: false,
+  },
   {
     id: "trash",
-    name: "Archive", // was "Trash"
+    name: "Archive",
     icon: "trash.png",
-    canOpen: false,
+    canOpen: true,
   },
 ];
 

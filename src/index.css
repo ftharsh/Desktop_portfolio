@@ -91,10 +91,10 @@ body {
     }
 
     .dock-icon {
-      @apply size-14 3xl:size-20 cursor-pointer;
+      @apply size-10 3xl:size-14 cursor-pointer disabled:cursor-default;
 
       img {
-        @apply object-cover object-center;
+        @apply size-full object-contain object-center;
       }
     }
   }

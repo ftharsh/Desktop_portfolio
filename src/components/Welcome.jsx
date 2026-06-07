@@ -80,7 +80,7 @@ export const Welcome = () => {
         )}
       </p>
       <h1 ref={titleRef} className='mt-7'>
-        {renderText("portfolio", "text-9xl italic font-georama")}
+        {renderText("portfolio .", "text-9xl italic font-georama")}
       </h1>
       <div className='small-screen'>
         <p>This portfolio is designed for laptop/desktop screens only. </p>
