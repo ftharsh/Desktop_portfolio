@@ -103,7 +103,7 @@ const dockApps = [
     icon: "maps.png",
     canOpen: false,
   },
-  
+
   {
     id: "facetime",
     name: "facetime",
@@ -158,7 +158,7 @@ const dockApps = [
     id: "spotify",
     name: "spotify",
     icon: "spotify.png",
-    canOpen: false,
+    canOpen: true,
   },
   {
     id: "youtube",
@@ -178,10 +178,12 @@ const blogPosts = [
   {
     id: 1,
     date: "Sep 2, 2025",
-    title:
-      "TypeScript Explained: What It Is, Why It Matters, and How to Master It",
+    title: "TypeScript Explained: What It Is, Why It Matters, and How to Master It",
     image: "/images/blog1.png",
     link: "https://jsmastery.com/blog/typescript-explained-what-it-is-why-it-matters-and-how-to-master-it",
+    siteName: "JS Mastery",
+    snippet:
+      "TypeScript Explained: What It Is, Why It Matters, and How to Master It. Explore the full article for an in-depth breakdown of concepts, examples, and best practices.",
   },
   {
     id: 2,
@@ -189,6 +191,9 @@ const blogPosts = [
     title: "The Ultimate Guide to Mastering Three.js for 3D Development",
     image: "/images/blog2.png",
     link: "https://jsmastery.com/blog/the-ultimate-guide-to-mastering-three-js-for-3d-development",
+    siteName: "JS Mastery",
+    snippet:
+      "The Ultimate Guide to Mastering Three.js for 3D Development. Explore the full article for an in-depth breakdown of concepts, examples, and best practices.",
   },
   {
     id: 3,
@@ -196,8 +201,28 @@ const blogPosts = [
     title: "The Ultimate Guide to Mastering GSAP Animations",
     image: "/images/blog3.png",
     link: "https://jsmastery.com/blog/the-ultimate-guide-to-mastering-gsap-animations",
+    siteName: "JS Mastery",
+    snippet:
+      "The Ultimate Guide to Mastering GSAP Animations. Explore the full article for an in-depth breakdown of concepts, examples, and best practices.",
   },
 ];
+
+const safariTabs = [
+  { label: "AI Mode" },
+  { label: "All", active: true },
+  { label: "Images" },
+  { label: "Shopping" },
+  { label: "Videos" },
+  { label: "News" },
+  { label: "Short videos" },
+  { label: "More", caret: true },
+  { label: "Tools", caret: true },
+];
+
+const safariMeta = {
+  query: "portfolio",
+  resultsCount: "About 5,010,000,000 results (0.38 seconds)",
+};
 
 const techStack = [
   {
@@ -313,6 +338,8 @@ export {
   socials,
   photosLinks,
   gallery,
+  safariTabs,
+  safariMeta,
 };
 
 const WORK_LOCATION = {
@@ -601,6 +628,7 @@ const WINDOW_CONFIG = {
   terminal: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
   txtfile: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
   imgfile: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
+  spotify: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
 };
 
 export { INITIAL_Z_INDEX, WINDOW_CONFIG };
