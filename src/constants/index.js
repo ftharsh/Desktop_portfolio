@@ -108,7 +108,8 @@ const dockApps = [
     id: "facetime",
     name: "facetime",
     icon: "facetime.png",
-    canOpen: false,
+    canOpen: true,
+    isNotification: true,
   },
   {
     id: "calendar",
@@ -117,6 +118,12 @@ const dockApps = [
     canOpen: false,
   },
 
+  {
+    id: "notes",
+    name: "Notes",
+    icon: "Notes.png",
+    canOpen: true,
+  },
   {
     id: "reminders",
     name: "reminders",
@@ -171,6 +178,7 @@ const dockApps = [
     name: "Archive",
     icon: "trash.png",
     canOpen: true,
+    finderLocation: "trash",
   },
 ];
 
@@ -178,7 +186,8 @@ const blogPosts = [
   {
     id: 1,
     date: "Sep 2, 2025",
-    title: "TypeScript Explained: What It Is, Why It Matters, and How to Master It",
+    title:
+      "TypeScript Explained: What It Is, Why It Matters, and How to Master It",
     image: "/images/blog1.png",
     link: "https://jsmastery.com/blog/typescript-explained-what-it-is-why-it-matters-and-how-to-master-it",
     siteName: "JS Mastery",
@@ -629,6 +638,172 @@ const WINDOW_CONFIG = {
   txtfile: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
   imgfile: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
   spotify: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
+  notes: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
 };
 
 export { INITIAL_Z_INDEX, WINDOW_CONFIG };
+
+const NOTES_FOLDERS = [
+  { id: "java", name: "Java", color: "#f0c040" },
+  { id: "devops", name: "DevOps", color: "#5ac8fa" },
+  { id: "system-design", name: "System Design", color: "#30d158" },
+  { id: "kafka", name: "Kafka", color: "#ff6b6b" },
+  { id: "databases", name: "Databases", color: "#bf5af2" },
+  { id: "project-ideas", name: "Project Ideas", color: "#ffd60a" },
+  { id: "easter-egg", name: "Dekha jayega", color: "#8e8e93" },
+];
+
+const NOTES_DATA = {
+  java: {
+    title: "Java",
+    items: [
+      { text: "ConcurrentHashMap vs Hashtable", done: true },
+      { text: "JVM Garbage Collection (G1, ZGC)", done: true },
+      { text: "Spring @Transactional gotchas", done: true },
+      { text: "volatile vs synchronized", done: true },
+      { text: "HashMap internal resizing", done: true },
+      { text: "ClassLoaders — how they actually work", done: false },
+      { text: "Java Memory Model deep dive", done: false },
+      { text: "Virtual Threads (Project Loom)", done: false },
+      { text: "CompletableFuture chaining patterns", done: false },
+    ],
+    doubts: [
+      "Why does JIT compilation sometimes make cold starts slower?",
+      "When would you pick ZGC over G1 in production?",
+      "Does @Async use a separate thread pool or the servlet pool?",
+    ],
+  },
+
+  devops: {
+    title: "DevOps",
+    items: [
+      { text: "Docker multi-stage builds", done: true },
+      { text: "K8s pod lifecycle and probes", done: true },
+      { text: "Helm chart templating", done: true },
+      { text: "EKS node groups vs Fargate", done: false },
+      { text: "Terraform state management", done: false },
+      { text: "ArgoCD GitOps workflow", done: false },
+    ],
+    doubts: [
+      "When does HPA conflict with cluster autoscaler?",
+      "Is Fargate worth it for small teams vs managed node groups?",
+    ],
+  },
+
+  "system-design": {
+    title: "System Design",
+    items: [
+      { text: "Rate limiting algorithms", done: true },
+      { text: "Circuit breaker pattern", done: true },
+      { text: "Event sourcing vs CRUD", done: false },
+      { text: "CQRS when and why", done: false },
+      { text: "Consistent hashing", done: false },
+      { text: "Leader election (Raft basics)", done: false },
+    ],
+    doubts: [
+      "Event sourcing — how do you handle schema evolution on old events?",
+      "Is CQRS overkill for anything under 10k RPS?",
+    ],
+  },
+
+  kafka: {
+    title: "Kafka",
+    items: [
+      { text: "Consumer groups and rebalancing", done: true },
+      { text: "Partition strategy and ordering", done: true },
+      { text: "Exactly-once semantics", done: false },
+      { text: "Kafka Streams vs Flink", done: false },
+      { text: "Schema Registry and Avro", done: false },
+    ],
+    doubts: ["How does Kafka guarantee exactly-once across consumer restarts?"],
+  },
+
+  databases: {
+    title: "Databases",
+    items: [
+      { text: "PostgreSQL EXPLAIN ANALYZE", done: true },
+      { text: "Index types: B-tree vs Hash vs GIN", done: true },
+      { text: "Connection pooling (HikariCP tuning)", done: true },
+      { text: "PostgreSQL partitioning strategies", done: false },
+      { text: "MVCC internals", done: false },
+      { text: "Query planner cost estimation", done: false },
+    ],
+    doubts: [
+      "When does a partial index outperform a full index?",
+      "Is pg_stat_statements enough for prod monitoring?",
+    ],
+  },
+
+  "project-ideas": {
+    title: "Project Ideas",
+    items: [
+      { text: "MCP server exposing personal tools", done: false },
+      { text: "Mini container runtime (no Docker)", done: false },
+      { text: "Distributed rate limiter with dashboard", done: false },
+      { text: "Webhook chaos testing tool for HookRelay", done: false },
+    ],
+    doubts: [],
+  },
+
+  "easter-egg": {
+    title: "Dekha jayega",
+    stanzas: [
+      [
+        "Jo hoga dekha jayega, kal ki kal dekhenge,",
+        "Zyada se zyada kya hi hoga? Thode taane sahenge!",
+        "Abhi ki socho mere bhai, future wali tension kaat do,",
+        "Dimaag ka dahi mat karo, chill maar ke waqt guzaar do.",
+      ],
+      [
+        "Jo hai, so hai, chhod na yaar, uss baat pe mitti pao,",
+        "Faltu load nahi lene ka, mast raho aur momos khao.",
+        "Bina soche samjhe chal, rasta khud hi mil jayega,",
+        "Galat train mein baith gaye, toh naya shehar dikh jayega!",
+      ],
+      [
+        "Raam bharose chal raha hai, honi ko kaun taal sakta hai?",
+        "Bank account chahe khali ho, apna attitude ubaal maarta hai!",
+        "Karke dekhte hain pehle, aaram se baad mein pachtayenge,",
+        'Galti pakdi gayi agar, toh "Sorry bro" bol ke muskurayenge.',
+      ],
+      [
+        "Jo mil raha hai lapet lo, chahe free ka Wi-Fi ya khana,",
+        "Pehle kaand kar lete hain, baad mein dhoondhenge bahana.",
+        "Ek hi toh zindagi hai, kya darna aur kya rona?",
+        "Duniya palti ya code phata, apna kaam hai ghode bech ke sona!",
+      ],
+    ],
+    doubts: [],
+  },
+};
+
+export { NOTES_DATA, NOTES_FOLDERS };
+
+// Replace with your actual Formspree form ID from formspree.io
+export const FORMSPREE_URL = "https://formspree.io/f/xljdrqov";
+
+export const CAL_BOOKING_URL = "https://cal.com/harshvardhan-hari-wwtz1x/30min";
+
+export const CONTACT_META = {
+  eyebrow: "backend engineer",
+  name: "Harshvardhan Hari",
+  location: "Patna, India · IST",
+  tagline:
+    "turning coffee, curiosity, and mild chaos into production-ready software.",
+  infoRows: [
+    {
+      label: "email",
+      value: "hariharshvardhan22@gmail.com",
+      href: "mailto:hariharshvardhan22@gmail.com",
+      isLink: true,
+    },
+    { label: "based", value: "Patna, India", href: null, isLink: false },
+  ],
+};
+
+export const CONTACT_ACTIONS = [
+  { label: "email", href: "mailto:hariharshvardhan22@gmail.com" },
+  { label: "github", href: "https://github.com/ftharsh" },
+  { label: "linked", href: "https://www.linkedin.com/in/harshvardhan-hari" },
+  { label: "twitter", href: "https://x.com/ftharsh" },
+];

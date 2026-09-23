@@ -63,3 +63,24 @@ Before starting any task, check installed skills and plugins for a match:
 
 Multiple design/taste skills are installed. Before starting UI work, ask me which
 aesthetic direction to use (default: design-taste-frontend-v1) rather than picking automatically.
+
+## Design skill selection
+
+Multiple design/taste skills are installed (design-taste-frontend, design-taste-frontend-v1,
+high-end-visual-design, minimalist-ui, industrial-brutalist-ui, gpt-taste, stitch-design-taste,
+apple-design, apple-design-build, apple-design-review). These overlap — do NOT auto-pick one.
+
+Default direction: design-taste-frontend-v1
+If a task doesn't specify a style, ask which direction to use rather than guessing.
+Apple-specific work: use apple-design-build for building, apple-design-review for auditing against HIG.
+
+## Standard frontend workflow
+
+1. Set direction (design-taste-frontend-v1 or as specified) → produces DESIGN.md
+2. image-to-code for visually important sections (mockup first, then code)
+3. web-design-guidelines to audit once code exists
+4. playwright-cli to test the live result
+
+## Command output
+
+Prefix git/docker/npm/mvn/test commands with `lowfat` when not already auto-hooked.

@@ -1,16 +1,31 @@
 import { useRef } from "react";
 import { Tooltip } from "react-tooltip";
 
-import { dockApps } from "#constants/index";
+import { dockApps, locations } from "#constants/index";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import useWindowStore from "#store/window";
+import useLocationStore from "#store/location";
 
-const Dock = () => {
+const Dock = ({ onNotificationClick }) => {
   const dockref = useRef(null);
   const { openWindow, closeWindow, windows } = useWindowStore();
+  const { setActiveLocation } = useLocationStore();
+
   const toggleApp = (app) => {
     if (!app.canOpen) return;
+
+    if (app.isNotification) {
+      onNotificationClick?.(app.id);
+      return;
+    }
+
+    if (app.finderLocation) {
+      setActiveLocation(locations[app.finderLocation]);
+      const finderWindow = windows["finder"];
+      if (!finderWindow.isOpen) openWindow("finder");
+      return;
+    }
 
     const window = windows[app.id];
     if (window.isOpen) {
@@ -18,8 +33,6 @@ const Dock = () => {
     } else {
       openWindow(app.id);
     }
-
-    console.log(windows);
   };
 
   useGSAP(() => {
@@ -71,7 +84,7 @@ const Dock = () => {
   return (
     <section id='dock'>
       <div ref={dockref} className='dock-container'>
-        {dockApps.map(({ id, name, icon, canOpen }) => (
+        {dockApps.map(({ id, name, icon, canOpen, isNotification, finderLocation }) => (
           <div key={id} className='relative flex justify-center'>
             <button
               type='button'
@@ -81,7 +94,7 @@ const Dock = () => {
               data-tooltip-content={name}
               data-tooltip-delay-show={150}
               disabled={!canOpen}
-              onClick={() => toggleApp({ id, canOpen })}>
+              onClick={() => toggleApp({ id, canOpen, isNotification, finderLocation })}>
               <img src={`/images/${icon}`} alt={name} loading='lazy' />
             </button>
           </div>

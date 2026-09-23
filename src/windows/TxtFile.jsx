@@ -22,7 +22,7 @@ const TxtFile = () => {
           <img
             src={image}
             alt={name}
-            className="w-full max-h-48 object-cover rounded-lg"
+            className="w-full aspect-square object-cover rounded-lg"
           />
         )}
         <h2 className="text-xl font-semibold">{name}</h2>

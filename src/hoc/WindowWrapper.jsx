@@ -22,10 +22,17 @@ const WindowWrapper = (Component, windowKey) => {
       if (!el) return;
 
       const [instance] = Draggable.create(el, {
+        trigger: el.querySelector("#window-header") || el,
         onPress: () => focusWindow(windowKey),
       });
 
-      return () => instance.kill();
+      const handleFocus = () => focusWindow(windowKey);
+      el.addEventListener("mousedown", handleFocus);
+
+      return () => {
+        instance.kill();
+        el.removeEventListener("mousedown", handleFocus);
+      };
     }, []);
 
     useLayoutEffect(() => {
