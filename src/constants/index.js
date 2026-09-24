@@ -86,10 +86,10 @@ const dockApps = [
     canOpen: false,
   },
   {
-    id: "messages",
-    name: "messages",
+    id: "iMessage",
+    name: "iMessage",
     icon: "messages.png",
-    canOpen: false,
+    canOpen: true,
   },
   {
     id: "mail",
@@ -533,7 +533,7 @@ const ABOUT_LOCATION = {
       kind: "file",
       fileType: "img",
       position: "top-10 left-5",
-      imageUrl: "/images/adrian.jpg",
+      imageUrl: "/images/Harsh.png",
     },
     {
       id: 2,
@@ -561,7 +561,7 @@ const ABOUT_LOCATION = {
       fileType: "txt",
       position: "top-60 left-5",
       subtitle: "Meet the Developer Behind the Code",
-      image: "/images/adrian.jpg",
+      image: "/images/Harsh.png",
       description: [
         "Hey! I’m Adrian 👋, a web developer who enjoys building sleek, interactive websites that actually work well.",
         "I specialize in JavaScript, React, and Next.js—and I love making things feel smooth, fast, and just a little bit delightful.",
@@ -639,6 +639,7 @@ const WINDOW_CONFIG = {
   imgfile: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
   spotify: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
   notes: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
+  iMessage: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
 };
 
 export { INITIAL_Z_INDEX, WINDOW_CONFIG };
@@ -779,6 +780,31 @@ const NOTES_DATA = {
 
 export { NOTES_DATA, NOTES_FOLDERS };
 
+export const IMESSAGE_GREETING =
+  "Hey! I'm Harsh's AI assistant. Ask me anything.";
+export const IMESSAGE_PLACEHOLDER = "Ask about Harsh...";
+export const IMESSAGE_SUBTITLE = "AI · Ask me anything";
+export const IMESSAGE_NAME = "Harsh";
+export const IMESSAGE_SUGGESTED_QUESTIONS = [
+  "What's his tech stack?",
+  "Tell me about his projects",
+  "Is he open to work?",
+  "What does he do at Nextuple?",
+];
+
+export const GEMINI_API_BASE =
+  "https://generativelanguage.googleapis.com/v1beta/models";
+export const GEMINI_MODEL = "gemini-3.5-flash-lite";
+
+export const PORTFOLIO_LINKS = {
+  github: "https://github.com/ftharsh",
+  linkedin: "https://www.linkedin.com/in/harshvardhan-hari",
+  portfolio: "https://ftharsh.com",
+};
+
+export const SPOTIFY_EMBED_URL =
+  "https://open.spotify.com/embed/playlist/6GbgDQTMlWbaqfblvWFKHF";
+
 // Replace with your actual Formspree form ID from formspree.io
 export const FORMSPREE_URL = "https://formspree.io/f/xljdrqov";
 
@@ -807,3 +833,21 @@ export const CONTACT_ACTIONS = [
   { label: "linked", href: "https://www.linkedin.com/in/harshvardhan-hari" },
   { label: "twitter", href: "https://x.com/ftharsh" },
 ];
+
+export const STICKY_NOTE_ITEMS = [
+  { text: "Survive B.Tech", done: true },
+  { text: "Become an engineer cool enough to center a <div> on the first try", done: false },
+  { text: "Ship HookRelay before it ships my sanity", done: false },
+  { text: "Get first job", done: true },
+  { text: "Get jacked enough to carry my technical debt", done: false },
+  { text: "Build this portfolio", done: true },
+  { text: "Attempt the impossible: make chai better than mom's", done: false },
+  { text: "Fund my ZNMD-style Europe road trip", done: false },
+  { text: "Buy a Triumph Speed Triple 1200 RS", done: false },
+];
+
+export const BOOT_SEQUENCE = {
+  sessionKey: "harsh-portfolio-has-booted",
+  fadeStartMs: 4500,
+  removeAfterMs: 5500,
+};

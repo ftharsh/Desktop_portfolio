@@ -2,7 +2,8 @@ import { useState } from "react";
 import gsap from "gsap";
 import { Draggable } from "gsap/Draggable";
 
-import { Navbar, Welcome, Dock, Home } from "./components";
+import { Navbar, Welcome, Dock, Home, StickyNote } from "./components";
+import BootScreen from "./components/BootScreen";
 import FaceTimeNotification from "./components/FaceTimeNotification";
 import {
   Finder,
@@ -14,6 +15,7 @@ import {
   ImgFile,
   Contact,
   Notes,
+  IMessage,
 } from "#windows";
 
 gsap.registerPlugin(Draggable);
@@ -23,6 +25,7 @@ const App = () => {
 
   return (
     <main>
+      <BootScreen />
       <Navbar />
       <Welcome />
       <Dock
@@ -41,7 +44,10 @@ const App = () => {
       <ImgFile />
       <Contact />
       <Notes />
+      <IMessage />
       <Home />
+
+      <StickyNote />
 
       <FaceTimeNotification
         visible={facetimeVisible}
